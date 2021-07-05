@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <!--
-       Licensed to the Apache Software Foundation (ASF) under one
-       or more contributor license agreements.  See the NOTICE file
-       distributed with this work for additional information
-       regarding copyright ownership.  The ASF licenses this file
-       to you under the Apache License, Version 2.0 (the
-       "License"); you may not use this file except in compliance
-       with the License.  You may obtain a copy of the License at
+	<!-- Licensed to the Apache Software Foundation (ASF) under one or more 
+		contributor license agreements. See the NOTICE file distributed with this 
+		work for additional information regarding copyright ownership. The ASF licenses 
+		this file to you under the Apache License, Version 2.0 (the "License"); you 
+		may not use this file except in compliance with the License. You may obtain 
+		a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless 
+		required by applicable law or agreed to in writing, software distributed 
+		under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+		OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+		the specific language governing permissions and limitations under the License. -->
 
-         http://www.apache.org/licenses/LICENSE-2.0
+	<modelVersion>4.0.0</modelVersion>
 
-       Unless required by applicable law or agreed to in writing,
-       software distributed under the License is distributed on an
-       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-       KIND, either express or implied.  See the License for the
-       specific language governing permissions and limitations
-       under the License.
-    -->
+	<groupId>com.hoffnungland</groupId>
+	<artifactId>jkarafdigestauth</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
 
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.hoffnungland</groupId>
-    <artifactId>jkarafdigestauth</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>bundle</packaging>
-
-    <name>Apache Karaf :: Digest Auth :: Passthrough</name>
-    <description>JKarafDigestAuth OSGi bundle project.</description>
+	<name>Apache Karaf :: Digest Auth :: Passthrough</name>
+	<description>JKarafDigestAuth OSGi bundle project.</description>
 	<distributionManagement>
 		<repository>
 			<id>manuelmsperanza.github</id>
@@ -38,29 +32,29 @@
 	</distributionManagement>
 	<scm>
 		<connection>scm:git:https://github.com/manuelmsperanza/JKarafDigestAuth.git</connection>
-		<developerConnection>scm:git:git@github.com:manuelmsperanza/JKarafDigestAuth.git</developerConnection>     
+		<developerConnection>scm:git:git@github.com:manuelmsperanza/JKarafDigestAuth.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/manuelmsperanza/JKarafDigestAuth/issues</url>
 	</issueManagement>
-    <properties>
-        <maven-bundle-plugin.version>5.1.2</maven-bundle-plugin.version>
-        <osgi.version>7.0.0</osgi.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties>
+		<maven-bundle-plugin.version>5.1.2</maven-bundle-plugin.version>
+		<osgi.version>7.0.0</osgi.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <version>${osgi.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.core</artifactId>
+			<version>${osgi.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
@@ -76,10 +70,10 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
-		    <version>1.7.31</version>
-            <scope>provided</scope>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.31</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient-osgi -->
 		<dependency>
@@ -93,38 +87,83 @@
 			<artifactId>httpcore-osgi</artifactId>
 			<version>4.4.14</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>${maven-bundle-plugin.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Bundle-Version>${project.version}</Bundle-Version>
-                        <Bundle-Activator>com.hoffnungland.jKarafDigestAuth.Activator</Bundle-Activator>
-                        <Export-Package>com.hoffnungland.jKarafDigestAuth*;version=${project.version}</Export-Package>
-                        <Import-Package>*</Import-Package>
-                        <_wab>src/main/java/</_wab>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jarsigner-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>3.0.0-M4</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${maven-bundle-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Bundle-Activator>com.hoffnungland.jKarafDigestAuth.Activator</Bundle-Activator>
+						<Export-Package>com.hoffnungland.jKarafDigestAuth*;version=${project.version}</Export-Package>
+						<Import-Package>*</Import-Package>
+						<_wab>src/main/java/</_wab>
 						<Web-ContextPath>digest-passthrough</Web-ContextPath>
-                    </instructions>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <maxmem>256M</maxmem>
-                </configuration>
-            </plugin>
-
-        </plugins>
-    </build>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<maxmem>256M</maxmem>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<keystore>${hoffnunglandJksPath}</keystore>
+							<alias>${hoffnunglandJksEntry}</alias>
+							<storepass>${hoffnunglandJksPasswd}</storepass>
+							<keypass>${hoffnunglandKeyPasswd}</keypass>
+							<tsa>${hoffnunglandTsaUrl}</tsa>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<certs>true</certs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
