@@ -84,3 +84,16 @@ Add the below entry to $KARAF_HOME\etc\org.ops4j.pax.logging.cfg
 # Test it
 
 Run a Soap request to http://localhost:8181/digest-passthrough/passthrough/jhonsmith
+
+# add .gitignore to mandatory empty directory
+
+	# Ignore everything in this directory
+	*
+	# Except this file
+	!.gitignore
+
+# Configure the Package Clean UP Automation with GitHub Action
+
+The Action run during the release phase of package (or you can run it manually).
+Leave only the latest package version into the repository.
+Create the .github/workflows/cleanupPackages.yml file.
